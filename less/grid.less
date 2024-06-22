@@ -1,0 +1,33 @@
+.generateGrid(@prefix, @columns, @iteration: 1) when (@iteration =< @columns) {
+  @column-name: ~'.col-@{prefix}@{iteration}';
+  @flexbase: (100% / @columns * @iteration);
+
+  @{column-name} {
+    flex: 0 0 @flexbase;
+  }
+
+  .generateGrid(@prefix, @columns, (@iteration + 1));
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: @default-padding;
+  .generateGrid('', 1);
+
+  @media (min-width: @breakResolution[mobile]) {
+    .generateGrid('sm-', 2);
+  }
+
+  @media (min-width: @breakResolution[tablet]) {
+    .generateGrid('md-', 6);
+  }
+
+  @media (min-width: @breakResolution[desktop]) {
+    .generateGrid('lg-', 12);
+  }
+
+  @media (min-width: @breakResolution[widescreen]) {
+    .generateGrid('xl-', 12);
+  }
+}
