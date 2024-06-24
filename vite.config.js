@@ -8,7 +8,7 @@ import path, { resolve } from "node:path";
 export default defineConfig(
     {
         appType: "mpa",
-        base: "/deploy/",
+        base: "/portafolio_franciscofernandez/",
         build: {
             rollupOptions: {
                 input: Object.fromEntries(
